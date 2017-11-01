@@ -1,4 +1,4 @@
-# James vim config
+# James' vim config
 
 Full `.vimrc` is included in this repository.
 
