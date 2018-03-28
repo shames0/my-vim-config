@@ -53,11 +53,12 @@ let s:plugins = {
             \'https://raw.githubusercontent.com/klp2/dc_trackperlvars/master/plugin/trackperlvars.vim',
         \],
         \'prefs': [
-            \'https://raw.githubusercontent.com/shames0/my-vim-config/master/.vim/prefs/indent_guides.vim',
             \'https://raw.githubusercontent.com/shames0/my-vim-config/master/.vim/prefs/general.vim',
             \'https://raw.githubusercontent.com/shames0/my-vim-config/master/.vim/prefs/functions.vim',
             \'https://raw.githubusercontent.com/shames0/my-vim-config/master/.vim/prefs/lightline.vim',
             \'https://raw.githubusercontent.com/shames0/my-vim-config/master/.vim/prefs/nerdtree.vim',
+            \'https://raw.githubusercontent.com/shames0/my-vim-config/master/.vim/prefs/editorconfig.vim',
+            \'https://raw.githubusercontent.com/shames0/my-vim-config/master/.vim/prefs/indent_guides.vim',
         \],
         \'colors': [
             \'https://raw.githubusercontent.com/Lokaltog/vim-distinguished/master/colors/distinguished.vim',
