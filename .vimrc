@@ -1,70 +1,71 @@
+function s:ensure_installed(plugins)
+    for download_method in keys(a:plugins)
+        for dest_folder in keys(a:plugins[download_method])
+            let l:dest_path = join([ $HOME, '.vim', dest_folder], '/')
+
+            for source_url in a:plugins[download_method][dest_folder]
+                " Get the 'basename' of the source url, and make that our destination filename.
+                let l:dest_name = join([l:dest_path, fnamemodify(source_url, ':t')], '/')
+
+                if empty(glob(l:dest_name))
+                    " If the destination doesn't exist, pull it down
+                    if download_method ==# 'git'
+                        silent execute join (['!git clone', source_url, l:dest_name], ' ')
+                    elseif download_method ==# 'curl'
+                        silent execute join (['!curl --create-dirs -fLo', l:dest_name, source_url], ' ')
+                    else
+                        echo join(['Unknown download method:', download_method], ' ')
+                    endif
+                endif
+            endfor
+
+        endfor
+    endfor
+endfunction
+
+" Structure representing desired plugins including:
+"   * The method used to fetch them.
+"   * The folder within ~/.vim they should live in.
+"   * The external location they can be fetched from.
+let s:plugins = {
+    \'git': {
+        \'bundle': [
+            \'https://github.com/editorconfig/editorconfig-vim.git',
+            \'https://github.com/itchyny/lightline.vim.git',
+            \'https://github.com/scrooloose/nerdtree.git',
+            \'https://github.com/altercation/vim-colors-solarized.git',
+            \'https://github.com/tpope/vim-fugitive.git',
+            \'https://github.com/pangloss/vim-javascript.git',
+            \'https://github.com/mxw/vim-jsx.git',
+            \'https://github.com/posva/vim-vue.git'
+        \],
+    \},
+    \'curl': {
+        \'autoload': [
+            \'https://raw.githubusercontent.com/tpope/vim-pathogen/master/autoload/pathogen.vim',
+        \],
+        \'plugin': [
+            \'https://raw.githubusercontent.com/klp2/dc_eqalignssimple/master/plugin/eqalignsimple.vim',
+            \'https://raw.githubusercontent.com/klp2/dc_trackperlvars/master/plugin/trackperlvars.vim',
+        \],
+        \'prefs': [
+            \'https://raw.githubusercontent.com/shames0/my-vim-config/master/.vim/prefs/general.vim',
+            \'https://raw.githubusercontent.com/shames0/my-vim-config/master/.vim/prefs/functions.vim',
+            \'https://raw.githubusercontent.com/shames0/my-vim-config/master/.vim/prefs/lightline.vim',
+            \'https://raw.githubusercontent.com/shames0/my-vim-config/master/.vim/prefs/nerdtree.vim',
+        \],
+        \'colors': [
+            \'https://raw.githubusercontent.com/Lokaltog/vim-distinguished/master/colors/distinguished.vim',
+        \],
+    \},
+\}
+
+call s:ensure_installed(s:plugins)
+
+" Load plugins via pathogen
 execute pathogen#infect()
 
-" Import other configs
-source ~/.vim/lightline_conf
-source ~/.vim/nerdtree_conf
-
-" Misc
-set hlsearch
-set laststatus=2
-set scrolloff=5
-set encoding=utf-8
-set synmaxcol=0
-
-" Tabs
-set expandtab
-set tabstop=4
-set shiftwidth=4
-set softtabstop=4
-
-" Look and feel
-    syntax enable
-    set cursorline
-
-    " Molokai theme
-    "   This is the theme I use if I can't
-    "   change the terminal pallete.
-    "colorscheme molokai
-    "let g:molokai_original = 1
-    "let g:rehash256 = 1
-
-    " Solarized theme
-    set background=dark
-    colorscheme solarized
-
-    " Higlight lines that are over length
-    let max_line_len = 120
-    highlight ColorColumn ctermbg=darkred ctermfg=white guibg=#592929
-    call matchadd('ColorColumn', '\%'.max_line_len.'v.\+', -1) "set column nr
-
-    " OverLength ruler
-    "set colorcolumn=120
-
-" Highlight unwanted whitespace
-highlight ExtraWhitespace ctermbg=red guibg=red
-match ExtraWhitespace /\s\+$/
-autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
-autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-autocmd InsertLeave * match ExtraWhitespace /\s\+$/
-autocmd BufWinLeave * call clearmatches()
-
-" Special behavior
-set wildmenu
-set wildmode=list:longest
-
-" Execute command and display output in new pane
-command! -complete=shellcmd -nargs=+ S call s:RunShellCommand(<q-args>)
-function! s:RunShellCommand(command)
-    let command = join(map(split(a:command), 'expand(v:val)'))
-    let winnr = bufwinnr('^' . command . '$')
-    silent! execute  winnr < 0 ? 'botright new ' . fnameescape(command) : winnr . 'wincmd w'
-    setlocal buftype=nowrite bufhidden=wipe nobuflisted noswapfile nowrap number readonly
-    echo 'Execute ' . command . '...'
-    silent! execute 'silent %!'. command
-    silent! execute 'resize ' . line('$')
-    silent! redraw
-    silent! execute 'au BufUnload <buffer> execute bufwinnr(' . bufnr('#') . ') . ''wincmd w'''
-    silent! execute 'nnoremap <silent> <buffer> <LocalLeader>r :call <SID>RunShellCommand(''' . command . ''')<CR>'
-    echo 'Shell command ' . command . ' executed.'
-    silent! execute 'wincmd w'
-endfunction
+" Import my preference files
+for pref_file in split(glob( '~/.vim/prefs/*.vim' ), '\n')
+    exe 'source' pref_file
+endfor

@@ -1,33 +1,22 @@
 # James' vim config
 
-Full `.vimrc` is included in this repository.
+This repository includes my `.vimrc` which contains everything necessary to automatically set up my vim environment.
+
+# Usage
+
+Simply download my `.vimrc` into the root of your homedirectory, and execute `vim`.
+This will trigger the downloading of all the plugins and preferences I use (if you don't already have them).
 
 # Plugins
-The following list shows the paths in my .vim folder for each of the plugins I use. Each links to its source where I found the plugin myself.
 
-* [.vim/autoload/pathogen.vim](https://github.com/tpope/vim-pathogen)
-    * For loading most of the other vim plugins I use.
-* [.vim/bundle/lightline.vim](https://github.com/itchyny/lightline.vim)
-    * A more exciting than default status-bar.
-* [.vim/bundle/nerdtree](https://github.com/scrooloose/nerdtree)
-    * You'll have to read about it on the github page.
-* [.vim/bundle/vim-colors-solarized](https://github.com/altercation/vim-colors-solarized)
-    * Adds solarized colorscheme.
-    * Caveat: this doesn't work the way you'd expect unless you modify your terminal pallete.
-      See: [Important note for terminal users](https://github.com/altercation/vim-colors-solarized#important-note-for-terminal-users)
-* [.vim/bundle/vim-fugitive](https://github.com/tpope/vim-fugitive)
-	* A must have for doing anything with git in vim.
-* [.vim/bundle/vim-javascript](https://github.com/pangloss/vim-javascript)
-	* Improved JavaScript syntax highlighting.
-* [.vim/colors/molokai.vim](https://github.com/tomasr/molokai/blob/master/colors/molokai.vim)
-	* molokai colorscheme. I use this when the solarized color pallete isn't available on the terminal I'm using.
-* [.vim/plugin/eqalignsimple.vim](https://github.com/klp2/dc_eqalignssimple/blob/master/plugin/eqalignsimple.vim)
-	* `shift+v` then move your cursor to cover a few lines, and press `=` to align equal signs.
-* [.vim/plugin/trackperlvars.vim](https://github.com/klp2/dc_trackperlvars/blob/master/plugin/trackperlvars.vim)
-	* Nifty visual aids for tracking perl variables.
+I use a variety of plugins, all of which are listed in the `l:plugins` variable within my `.vimrc`
 
-# Conf files
-I also use the following conf files as referenced in my `.vimrc`. You can find these in the repository.
+# Preferences
 
-* `.vim/lightline_conf`
-* `.vim/nerdtree_conf`
+Within the `l:plugins` variable there is a `prefs` key which lists the files that define my general vim preferences,
+as well as my preferences for certain plugins I use.
+
+# Customization
+
+You can, of course modify the `l:plugins` dictionary within the contained `.vimrc` to your own liking in order to
+include whatever plugins you wish to automatically download.
