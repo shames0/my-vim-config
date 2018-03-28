@@ -9,10 +9,12 @@ function s:ensure_installed(plugins)
 
                 if empty(glob(l:dest_name))
                     " If the destination doesn't exist, pull it down
+                    echon "Downloading missing plugins..."
+
                     if download_method ==# 'git'
-                        silent execute join (['!git clone', source_url, l:dest_name], ' ')
+                        execute join (['silent !git clone -q', source_url, l:dest_name], ' ')
                     elseif download_method ==# 'curl'
-                        silent execute join (['!curl --create-dirs -fLo', l:dest_name, source_url], ' ')
+                        execute join (['silent !curl --create-dirs -sSfLo', l:dest_name, source_url], ' ')
                     else
                         echo join(['Unknown download method:', download_method], ' ')
                     endif
@@ -37,7 +39,8 @@ let s:plugins = {
             \'https://github.com/tpope/vim-fugitive.git',
             \'https://github.com/pangloss/vim-javascript.git',
             \'https://github.com/mxw/vim-jsx.git',
-            \'https://github.com/posva/vim-vue.git'
+            \'https://github.com/posva/vim-vue.git',
+            \'https://github.com/nathanaelkane/vim-indent-guides.git',
         \],
     \},
     \'curl': {
@@ -49,6 +52,7 @@ let s:plugins = {
             \'https://raw.githubusercontent.com/klp2/dc_trackperlvars/master/plugin/trackperlvars.vim',
         \],
         \'prefs': [
+            \'https://raw.githubusercontent.com/shames0/my-vim-config/master/.vim/prefs/indent_guides.vim',
             \'https://raw.githubusercontent.com/shames0/my-vim-config/master/.vim/prefs/general.vim',
             \'https://raw.githubusercontent.com/shames0/my-vim-config/master/.vim/prefs/functions.vim',
             \'https://raw.githubusercontent.com/shames0/my-vim-config/master/.vim/prefs/lightline.vim',
@@ -67,5 +71,5 @@ execute pathogen#infect()
 
 " Import my preference files
 for pref_file in split(glob( '~/.vim/prefs/*.vim' ), '\n')
-    exe 'source' pref_file
+    execute 'source' pref_file
 endfor
