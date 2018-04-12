@@ -1,4 +1,4 @@
-function s:ensure_installed(plugins)
+function! s:ensure_installed(plugins)
     for download_method in keys(a:plugins)
         for dest_folder in keys(a:plugins[download_method])
             let l:dest_path = join([ $HOME, '.vim', dest_folder], '/')
