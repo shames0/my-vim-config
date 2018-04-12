@@ -9,7 +9,10 @@ function! s:ensure_installed(plugins)
 
                 if empty(glob(l:dest_name))
                     " If the destination doesn't exist, pull it down
-                    echon "Downloading missing plugins..."
+                    echon "Downloading missing plugins...\n"
+
+                    let l:print_meth = download_method ==# 'git' ? 'cloning' : 'downloading'
+                    execute 'silent !echo -e "'. l:print_meth .' '. source_url .' => '. l:dest_name . '"'
 
                     if download_method ==# 'git'
                         execute join (['silent !git clone -q', source_url, l:dest_name], ' ')
