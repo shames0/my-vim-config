@@ -20,7 +20,7 @@ set softtabstop=4
 syntax enable
 
 "" Show cursor line
-set cursorline
+" set cursorline
 
 "" Relative line numbers
 set relativenumber
