@@ -45,7 +45,7 @@ let s:plugins = {
             \'https://github.com/posva/vim-vue.git',
             \'https://github.com/nathanaelkane/vim-indent-guides.git',
             \'https://github.com/junegunn/gv.vim.git',
-            \'git@github.com:w0rp/ale.git',
+            \'https://github.com/w0rp/ale.git',
         \],
     \},
     \'curl': {
