@@ -30,7 +30,7 @@ set wildmenu
 set wildmode=list:longest
 
 "" Solarized theme
-colorscheme solarized
+colorscheme tango2
 set background=dark
 
 "" Highlight unwanted whitespace
