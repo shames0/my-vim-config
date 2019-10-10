@@ -66,6 +66,7 @@ let s:plugins = {
         \],
         \'colors': [
             \'https://raw.githubusercontent.com/Lokaltog/vim-distinguished/master/colors/distinguished.vim',
+            \'https://www.vim.org/scripts/download_script.php?src_id=9387',
         \],
     \},
 \}
