@@ -58,6 +58,7 @@ let s:plugins = {
         \],
         \'prefs': [
             \'https://raw.githubusercontent.com/shames0/my-vim-config/master/.vim/prefs/general.vim',
+            \'https://raw.githubusercontent.com/shames0/my-vim-config/master/.vim/prefs/ale.vim',
             \'https://raw.githubusercontent.com/shames0/my-vim-config/master/.vim/prefs/functions.vim',
             \'https://raw.githubusercontent.com/shames0/my-vim-config/master/.vim/prefs/lightline.vim',
             \'https://raw.githubusercontent.com/shames0/my-vim-config/master/.vim/prefs/nerdtree.vim',
