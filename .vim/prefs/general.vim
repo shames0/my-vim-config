@@ -1,13 +1,14 @@
 " Misc
 set hlsearch
+set nowrapscan
 set laststatus=2
-set scrolloff=5
+set scrolloff=1
 set encoding=utf-8
 set synmaxcol=0
 
 
 " Tabs
-
+set autoindent
 set expandtab
 set tabstop=4
 set shiftwidth=4
