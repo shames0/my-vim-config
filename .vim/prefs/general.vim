@@ -6,6 +6,8 @@ set scrolloff=1
 set encoding=utf-8
 set synmaxcol=0
 
+" Sane Deletion                                                                                                         
+set backspace=indent,eol,start
 
 " Tabs
 set autoindent
