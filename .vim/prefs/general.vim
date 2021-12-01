@@ -33,7 +33,7 @@ set wildmenu
 set wildmode=list:longest
 
 "" Solarized theme
-let g:solarized_termtrans=1
+" let g:solarized_termtrans=1
 colorscheme solarized
 set background=dark
 
