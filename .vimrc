@@ -67,6 +67,7 @@ let s:plugins = {
             \'https://raw.githubusercontent.com/shames0/my-vim-config/master/.vim/prefs/indent_guides.vim',
         \],
         \'colors': [
+            \'https://raw.githubusercontent.com/sickill/vim-monokai/master/colors/monokai.vim',
             \'https://raw.githubusercontent.com/Lokaltog/vim-distinguished/master/colors/distinguished.vim',
         \],
     \},
