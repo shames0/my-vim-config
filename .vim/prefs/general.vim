@@ -34,7 +34,7 @@ set wildmode=list:longest
 
 "" Solarized theme
 " let g:solarized_termtrans=1
-colorscheme solarized
+colorscheme monokai
 set background=dark
 
 "" Highlight unwanted whitespace
